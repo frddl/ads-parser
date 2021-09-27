@@ -2,22 +2,12 @@
 
 namespace App\ParseStrategy;
 
-class TapAz implements parseStrategy
+class TapAz extends MasterStrategy
 {
-    private $data;
+    public $conf_path = 'parsers.sites.tap_az';
 
-    public function __construct($data)
+    public function parse(): array
     {
-        $this->data = $data;
-        $this->config = config('parsers.sites.tap_az');
-    }
-
-    public function parse()
-    {
-    }
-
-    public function generateAdUrl(): string
-    {
-        return '';
+        return [];
     }
 }

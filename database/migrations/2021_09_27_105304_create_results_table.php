@@ -15,7 +15,7 @@ class CreateResultsTable extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->string('result_id');
+            $table->string('result_link');
             $table->integer('ad_item_id');
             $table->softDeletes();
             $table->timestamps();

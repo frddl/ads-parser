@@ -2,22 +2,12 @@
 
 namespace App\ParseStrategy;
 
-class TurboAz implements parseStrategy
+class TurboAz extends MasterStrategy
 {
-    private $data;
+    public $conf_path = 'parsers.sites.turbo_az';
 
-    public function __construct($data)
+    public function parse(): array
     {
-        $this->data = $data;
-        $this->config = config('parsers.sites.turbo_az');
-    }
-
-    public function parse()
-    {
-    }
-
-    public function generateAdUrl(): string
-    {
-        return '';
+        return [];
     }
 }

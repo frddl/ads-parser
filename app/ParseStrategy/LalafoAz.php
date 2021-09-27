@@ -2,22 +2,12 @@
 
 namespace App\ParseStrategy;
 
-class LalafoAz implements parseStrategy
+class LalafoAz extends MasterStrategy
 {
-    private $data;
+    public $conf_path = 'parsers.sites.lalafo_az';
 
-    public function __construct($data)
+    public function parse(): array
     {
-        $this->data = $data;
-        $this->config = config('parsers.sites.lalafo_az');
-    }
-
-    public function parse()
-    {
-    }
-
-    public function generateAdUrl(): string
-    {
-        return '';
+        return [];
     }
 }

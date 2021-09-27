@@ -2,22 +2,12 @@
 
 namespace App\ParseStrategy;
 
-class BinaAz implements parseStrategy
+class BinaAz extends MasterStrategy
 {
-    private $data;
+    public $conf_path = 'parsers.sites.bina_az';
 
-    public function __construct($data)
+    public function parse(): array
     {
-        $this->data = $data;
-        $this->config = config('parsers.sites.bina_az');
-    }
-
-    public function parse()
-    {
-    }
-
-    public function generateAdUrl(): string
-    {
-        return '';
+        return [];
     }
 }
