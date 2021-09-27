@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d5eb247c97e4a9329a5afbacc0a5ec82",
+    "content-hash": "2528c152726c3bd38b496f1c9b98d82d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -196,6 +196,60 @@
                 "source": "https://github.com/dflydev/dflydev-dot-access-data/tree/v3.0.1"
             },
             "time": "2021-08-13T13:06:58+00:00"
+        },
+        {
+            "name": "dimabdc/php-fast-simple-html-dom-parser",
+            "version": "1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dimabdc/PHP-Fast-Simple-HTML-DOM-Parser.git",
+                "reference": "5a247567567a512a2c7ba819898e00a9207f47c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dimabdc/PHP-Fast-Simple-HTML-DOM-Parser/zipball/5a247567567a512a2c7ba819898e00a9207f47c3",
+                "reference": "5a247567567a512a2c7ba819898e00a9207f47c3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-libxml": "*",
+                "ext-simplexml": "*",
+                "php": ">=5.6",
+                "symfony/css-selector": "*"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.2",
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "FastSimpleHTMLDom\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "dimabdc",
+                    "email": "support@titor.ru",
+                    "homepage": "http://github.com/dimabdc"
+                }
+            ],
+            "description": "PHP Fast Simple HTML DOM parser.",
+            "keywords": [
+                "html",
+                "parse",
+                "parser"
+            ],
+            "support": {
+                "issues": "https://github.com/dimabdc/PHP-Fast-Simple-HTML-DOM-Parser/issues",
+                "source": "https://github.com/dimabdc/PHP-Fast-Simple-HTML-DOM-Parser/tree/1.4"
+            },
+            "time": "2020-08-23T22:47:26+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -7865,5 +7919,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
