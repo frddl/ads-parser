@@ -18,6 +18,8 @@ class Result extends Model
         'ad_item_id' => 'integer',
     ];
 
+    protected $with = ['adItem'];
+
     public function adItem(): BelongsTo
     {
         return $this->belongsTo(AdItem::class);
