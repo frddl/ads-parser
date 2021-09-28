@@ -35,5 +35,5 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/results', [ResultController::class, 'index'])->name('results');
     Route::get('/settings', [DashboardController::class, 'settings'])->name('settings');
-    Route::post('/settings', [DashboardController::class, 'settings-store'])->name('settings-store');
+    Route::post('/settings', [DashboardController::class, 'settingsStore'])->name('settings-store');
 });
