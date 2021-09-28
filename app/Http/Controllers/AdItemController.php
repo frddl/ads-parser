@@ -25,7 +25,8 @@ class AdItemController extends Controller
 
     public function edit(AdItem $adItem): View
     {
-        return view('ad-item.edit', compact('adItem'));
+        $providers = config('parsers.sites');
+        return view('ad-item.edit', compact('adItem', 'providers'));
     }
 
     public function update(Request $request, AdItem $adItem): RedirectResponse

@@ -62,13 +62,13 @@
                                         </div>
 
                                         <div class="col-span-12 md:col-span-6">
-                                            <label for="blacklist"
+                                            <label for="blacklisted"
                                                 class="block text-sm font-medium text-gray-700">{{ __('Blacklist') }}</label>
                                             <p class="mt-1 text-sm text-gray-600">
                                                 {{ __('Enter comma-separated words to be blacklisted.') }}
                                             </p>
-                                            <input type="text" name="blacklist" id="blacklist" autocomplete="blacklist"
-                                                value="{{ old('blacklist', '') }}"
+                                            <input type="text" name="blacklisted" id="blacklisted"
+                                                autocomplete="blacklisted" value="{{ old('blacklisted', '') }}"
                                                 class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md">
                                         </div>
 

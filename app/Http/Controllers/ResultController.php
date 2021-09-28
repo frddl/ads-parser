@@ -18,7 +18,7 @@ class ResultController extends Controller
 
     public function view(AdItem $adItem): View
     {
-        $results = $adItem->results;
+        $results = $adItem->results()->paginate(20);
         return view('ad-item.result', compact('adItem', 'results'));
     }
 

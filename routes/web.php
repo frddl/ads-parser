@@ -25,13 +25,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/new', [AdItemController::class, 'create'])->name('create-item');
         Route::post('/new', [AdItemController::class, 'store'])->name('item-store');
 
-        Route::get('/{ad}', [AdItemController::class, 'edit'])->name('edit-item');
-        Route::post('/{ad}', [AdItemController::class, 'update'])->name('view-item');
-        Route::post('/{ad}/delete', [AdItemController::class, 'destroy'])->name('delete-item');
+        Route::get('/{adItem}', [AdItemController::class, 'edit'])->name('edit-item');
+        Route::post('/{adItem}', [AdItemController::class, 'update'])->name('view-item');
+        Route::post('/{adItem}/delete', [AdItemController::class, 'destroy'])->name('delete-item');
 
-        Route::get('/{ad}/results', [ResultController::class, 'view'])->name('item-results');
-        Route::get('/{ad}/results/{result}/link', [ResultController::class, 'link'])->name('result-link');
-        Route::post('/{ad}/results/{result}/delete', [ResultController::class, 'destroy'])->name('delete-result');
+        Route::get('/{adItem}/results', [ResultController::class, 'view'])->name('item-results');
+        Route::get('/{adItem}/results/{result}/link', [ResultController::class, 'link'])->name('result-link');
+        Route::post('/{adItem}/results/{result}/delete', [ResultController::class, 'destroy'])->name('delete-result');
     });
 
     Route::get('/results', [ResultController::class, 'index'])->name('results');
