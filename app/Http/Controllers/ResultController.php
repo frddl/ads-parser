@@ -12,13 +12,14 @@ class ResultController extends Controller
 {
     public function index(): View
     {
-        $results = Result::paginate(20);
+        $results = Result::orderByDesc('id')->paginate(20);
         return view('results', compact('results'));
     }
 
-    public function view(AdItem $adItem, Result $result): View
+    public function view(AdItem $adItem): View
     {
-        return view('ad-item.result', compact('adItem', 'result'));
+        $results = $adItem->results;
+        return view('ad-item.result', compact('adItem', 'results'));
     }
 
     public function link(AdItem $adItem, Result $result): RedirectResponse

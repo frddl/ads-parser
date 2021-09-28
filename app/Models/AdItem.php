@@ -35,6 +35,6 @@ class AdItem extends Model
 
     public function results(): HasMany
     {
-        return $this->hasMany(Result::class);
+        return $this->hasMany(Result::class)->orderByDesc('id');
     }
 }

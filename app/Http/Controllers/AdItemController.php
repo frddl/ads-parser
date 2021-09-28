@@ -11,7 +11,8 @@ class AdItemController extends Controller
 {
     public function create(): View
     {
-        return view('ad-item.create');
+        $providers = config('parsers.strategy');
+        return view('ad-item.create', compact('providers'));
     }
 
     public function edit(AdItem $adItem): View
