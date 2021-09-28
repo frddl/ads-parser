@@ -30,6 +30,9 @@ class DashboardController extends Controller
         $settings->telegram_bot_token = $request->input('telegram_bot_token', '');
         $settings->email = $request->input('email', '');
 
+        $settings->telegram_notifications_enabled = $request->has('telegram_notifications_enabled');
+        $settings->email_notifications_enabled = $request->has('email_notifications_enabled');
+
         $settings->save();
 
         return redirect()->back()->with('message', __('Settings updated!'));

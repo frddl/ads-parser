@@ -126,11 +126,13 @@
                                         <div class="space-y-4">
                                             <div class="flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="comments" name="comments" type="checkbox"
+                                                    <input id="email_notifications_enabled"
+                                                        name="email_notifications_enabled" type="checkbox"
+                                                        @if ($settings->email_notifications_enabled) checked @endif
                                                         class="focus:ring-gray-500 h-4 w-4 text-gray-600 border-gray-300 rounded">
                                                 </div>
                                                 <div class="ml-3 text-sm">
-                                                    <label for="comments"
+                                                    <label for="email_notifications_enabled"
                                                         class="font-medium text-gray-700">{{ __('Email') }}</label>
                                                     <p class="text-gray-500">
                                                         {{ __('Get notified to the email entered in the previous block.') }}
@@ -139,11 +141,13 @@
                                             </div>
                                             <div class="flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="candidates" name="candidates" type="checkbox"
+                                                    <input id="telegram_notifications_enabled"
+                                                        name="telegram_notifications_enabled" type="checkbox"
+                                                        @if ($settings->telegram_notifications_enabled) checked @endif
                                                         class="focus:ring-gray-500 h-4 w-4 text-gray-600 border-gray-300 rounded">
                                                 </div>
                                                 <div class="ml-3 text-sm">
-                                                    <label for="candidates"
+                                                    <label for="telegram_notifications_enabled"
                                                         class="font-medium text-gray-700">{{ __('Telegram') }}</label>
                                                     <p class="text-gray-500">
                                                         {{ __('Get notified via the Telegram Bot.') }}</p>
