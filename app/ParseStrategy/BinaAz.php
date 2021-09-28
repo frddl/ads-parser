@@ -12,6 +12,6 @@ class BinaAz extends MasterStrategy
     {
         $html = new Document(file_get_contents($this->getConfig()['url']));
         $ret = $html->find('div[id=foo]');
-        return $ret;
+        return [$ret];
     }
 }

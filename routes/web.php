@@ -16,18 +16,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+require __DIR__ . '/auth.php';
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/new', [AdItemController::class, 'create'])->name('create-item');
+    Route::prefix('ads')->group(function () {
+        Route::get('/new', [AdItemController::class, 'create'])->name('create-item');
 
-    Route::get('/{ad}', [AdItemController::class, 'edit'])->name('edit-item');
-    Route::post('/{ad}', [AdItemController::class, 'update'])->name('view-item');
-    Route::post('/{ad}/delete', [AdItemController::class, 'destroy'])->name('delete-item');
+        Route::get('/{ad}', [AdItemController::class, 'edit'])->name('edit-item');
+        Route::post('/{ad}', [AdItemController::class, 'update'])->name('view-item');
+        Route::post('/{ad}/delete', [AdItemController::class, 'destroy'])->name('delete-item');
 
-    Route::get('/{ad}/results', [ResultController::class, 'view'])->name('results');
-    Route::get('/{ad}/results/{result}/link', [ResultController::class, 'link'])->name('result-link');
-    Route::post('/{ad}/results/{result}/delete', [ResultController::class, 'destroy'])->name('delete-result');
+        Route::get('/{ad}/results', [ResultController::class, 'view'])->name('item-results');
+        Route::get('/{ad}/results/{result}/link', [ResultController::class, 'link'])->name('result-link');
+        Route::post('/{ad}/results/{result}/delete', [ResultController::class, 'destroy'])->name('delete-result');
+    });
+
+    Route::get('/results', [ResultController::class, 'index'])->name('results');
+    Route::get('/settings', [DashboardController::class, 'settings'])->name('settings');
+    Route::post('/settings', [DashboardController::class, 'settings-store'])->name('settings-store');
 });
-
-require __DIR__ . '/auth.php';
