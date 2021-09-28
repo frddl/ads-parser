@@ -16,7 +16,7 @@ class DashboardController extends Controller
         return view('dashboard', compact('ad_items'));
     }
 
-    public function show(GeneralSettings $settings): View
+    public function settings(GeneralSettings $settings): View
     {
         return view('settings', [
             'is_active' => $settings->is_active,
