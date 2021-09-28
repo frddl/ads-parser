@@ -6,14 +6,14 @@
     </x-slot>
 
     @if (session()->has('message'))
-        <div class="max-w-7xl mx-auto pt-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto pt-4 px-2 md:px-8">
             <div class="bg-green-500 text-white show mt-5 rounded-md p-2">
                 <i data-feather="check" class="w-6 h-6 mr-2"></i> {{ session('message') }}
             </div>
         </div>
     @endif
 
-    <div class="py-8">
+    <div class="pb-4 md:py-8 px-2 md:px-0">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <form action="{{ route('settings-store') }}" method="POST">
                 @csrf
@@ -29,7 +29,7 @@
                             </div>
                         </div>
                         <div class="mt-5 md:mt-0 md:col-span-2">
-                            <div class="shadow overflow-hidden sm:rounded-md">
+                            <div class="shadow overflow-hidden rounded-md">
                                 <div class="px-4 py-5 bg-white sm:p-6">
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-6 sm:col-span-4">
@@ -120,7 +120,7 @@
                             </div>
                         </div>
                         <div class="mt-5 md:mt-0 md:col-span-2">
-                            <div class="shadow overflow-hidden sm:rounded-md">
+                            <div class="shadow overflow-hidden rounded-md">
                                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                     <fieldset>
                                         <div class="space-y-4">
