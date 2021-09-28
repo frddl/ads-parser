@@ -8,6 +8,9 @@ class CreateGeneralSettings extends SettingsMigration
     {
         $this->migrator->add('general.is_active', true);
         $this->migrator->add('general.language', 'en');
-        $this->migrator->add('general.telegram_id', '');
+        $this->migrator->add('general.telegram_user_id', '');
+        $this->migrator->add('general.telegram_bot_username', '');
+        $this->migrator->add('general.telegram_bot_token', '');
+        $this->migrator->add('general.email', '');
     }
 }

@@ -18,18 +18,17 @@ class DashboardController extends Controller
 
     public function settings(GeneralSettings $settings): View
     {
-        return view('settings', [
-            'is_active' => $settings->is_active,
-            'language' => $settings->language,
-            'telegram_id' => $settings->telegram_id
-        ]);
+        return view('settings', compact('settings'));
     }
 
     public function settingsStore(Request $request, GeneralSettings $settings): RedirectResponse
     {
         $settings->is_active = $request->input('is_active');
         $settings->language = $request->input('language');
-        $settings->telegram_id = $request->input('telegram_id');
+        $settings->telegram_user_id = $request->input('telegram_user_id');
+        $settings->telegram_bot_username = $request->input('telegram_bot_username');
+        $settings->telegram_bot_token = $request->input('telegram_bot_token');
+        $settings->email = $request->input('email');
 
         $settings->save();
 
