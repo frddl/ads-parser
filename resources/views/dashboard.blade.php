@@ -5,6 +5,14 @@
         </h2>
     </x-slot>
 
+    @if (session()->has('message'))
+        <div class="max-w-7xl mx-auto pt-4 sm:px-6 lg:px-8">
+            <div class="bg-green-500 text-white show mt-5 rounded-md p-2">
+                <i data-feather="check" class="w-6 h-6 mr-2"></i> {{ session('message') }}
+            </div>
+        </div>
+    @endif
+
     <div class="py-6">
         <div class="flex max-w-7xl mx-auto px-8 mb-2">
             <a class="ml-auto" href="{{ route('create-item') }}">

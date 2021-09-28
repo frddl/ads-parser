@@ -25,13 +25,13 @@ class DashboardController extends Controller
     {
         $settings->is_active = $request->input('is_active');
         $settings->language = $request->input('language');
-        $settings->telegram_user_id = $request->input('telegram_user_id');
-        $settings->telegram_bot_username = $request->input('telegram_bot_username');
-        $settings->telegram_bot_token = $request->input('telegram_bot_token');
-        $settings->email = $request->input('email');
+        $settings->telegram_user_id = $request->input('telegram_user_id', '');
+        $settings->telegram_bot_username = $request->input('telegram_bot_username', '');
+        $settings->telegram_bot_token = $request->input('telegram_bot_token', '');
+        $settings->email = $request->input('email', '');
 
         $settings->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('message', __('Settings updated!'));
     }
 }
