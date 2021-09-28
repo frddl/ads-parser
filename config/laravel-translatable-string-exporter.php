@@ -1,15 +1,15 @@
 <?php
 return [
     // Directories to search in.
-    'directories'=> [
+    'directories' => [
         'app',
         'resources',
     ],
 
     // File Patterns to search for.
-    'patterns'=> [
+    'patterns' => [
         '*.php',
-        '*.js',
+        // '*.js',
     ],
 
     // Indicates whether new lines are allowed in translations.
@@ -17,7 +17,7 @@ return [
 
     // Translation function names.
     // If your function name contains $ escape it using \$ .
-    'functions'=> [
+    'functions' => [
         '__',
         '_t',
         '@lang',

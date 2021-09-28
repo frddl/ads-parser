@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('ads')->group(function () {
         Route::get('/new', [AdItemController::class, 'create'])->name('create-item');
+        Route::post('/new', [AdItemController::class, 'store'])->name('item-store');
 
         Route::get('/{ad}', [AdItemController::class, 'edit'])->name('edit-item');
         Route::post('/{ad}', [AdItemController::class, 'update'])->name('view-item');

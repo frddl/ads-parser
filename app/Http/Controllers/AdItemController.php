@@ -11,8 +11,16 @@ class AdItemController extends Controller
 {
     public function create(): View
     {
-        $providers = config('parsers.strategy');
+        $providers = config('parsers.sites');
         return view('ad-item.create', compact('providers'));
+    }
+
+    public function store(Request $request): RedirectResponse
+    {
+        $data = $request->except('_token');
+        AdItem::create($data);
+
+        return redirect()->route('dashboard')->with('message', __('Successfully created!'));
     }
 
     public function edit(AdItem $adItem): View

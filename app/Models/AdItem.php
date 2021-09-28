@@ -24,7 +24,7 @@ class AdItem extends Model
         'price_min' => 'integer',
         'price_max' => 'integer',
         'provider'  => 'integer',
-        'minutes'   => 'minutes',
+        'minutes'   => 'integer',
         'is_active' => 'boolean',
     ];
 
