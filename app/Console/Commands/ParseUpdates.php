@@ -2,8 +2,13 @@
 
 namespace App\Console\Commands;
 
+use App\Models\AdItem;
 use App\Models\Result;
+use Exception;
 use Illuminate\Console\Command;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use LogicException;
 
 class ParseUpdates extends Command
 {
@@ -12,14 +17,14 @@ class ParseUpdates extends Command
      *
      * @var string
      */
-    protected $signature = 'ads:parse {keyword} {--provider=} {--min=?} {--max=?} {--blacklisted=?}';
+    protected $signature = 'ads:parse {adItem} {--provider=} {--min=0} {--max=' . PHP_INT_MAX . '} {--blacklisted=[]}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Parse the updates using the CLI interface. Usage: php artisan ads:parse \'keyword\' --provider=tap_az --min=10 --max=50 --blacklisted="word1,word2"';
+    protected $description = 'Parse the updates using the CLI interface. Usage: php artisan ads:parse \'adItem\' --provider=tap_az --min=10 --max=50 --blacklisted="word1,word2"';
 
     public $config;
 
@@ -41,26 +46,54 @@ class ParseUpdates extends Command
      */
     public function handle()
     {
-        $keyword = $this->argument('keyword');
-        $price_min = $this->hasOption('min') ? $this->option('min') : null;
-        $price_max = $this->hasOption('max') ? $this->option('max') : null;
-        $blacklisted = $this->hasOption('blacklisted') ? explode(",", $this->option('blacklisted')) : [];
+        $adItem = AdItem::find($this->argument('adItem'));
+        if (!$adItem) throw new Exception('Ad item does not exist.');
+
+        $keyword = $adItem->keyword;
+        $price_min = $this->option('min');
+        $price_max = $this->option('max');
+
+        if ($price_min > $price_max) throw new LogicException('price_min should be equal or greater than price_max');
+
+        $blacklisted = explode(",", $this->option('blacklisted'));
 
         $provider = $this->option('provider');
 
         $providerClass = $this->config['strategy'][$provider];
         $siteConfig = $this->config['sites'][$provider];
 
-        $parser = new $providerClass(['keyword' => $keyword]);
-        print_r($blacklisted);
-        print_r($parser->parse());
+        $parser = new $providerClass($adItem);
 
         $results = $parser->parse();
         foreach ($results as $result) {
-            // Result::create([
-            //     'result_link' => $result->link,
-            // ]);
+            $result = $result;
+
+            if (
+                $this->numeric($result['price']) >= $price_min &&
+                $this->numeric($result['price']) <= $price_max &&
+                Str::contains(strtolower($result['name']), $keyword)
+            ) {
+                $blacklisted_flag = true;
+                foreach ($blacklisted as $word) {
+                    $blacklisted_flag = $blacklisted_flag && !Str::contains(strtolower($result['name']), $word);
+                }
+
+                if ($blacklisted_flag) {
+                    $instance = Result::create([
+                        'ad_item_id' => $adItem->id,
+                        'result_link' => $result->link,
+                    ]);
+
+                    $instance->property()->create(Arr::except($result, 'link'));
+                    $instance->save();
+                }
+            }
         }
         return 0;
+    }
+
+    public function numeric($input): int
+    {
+        return intval(preg_replace('/[^0-9]/', '', $input));
     }
 }
