@@ -23,7 +23,6 @@ class AdItem extends Model
     protected $casts = [
         'price_min' => 'integer',
         'price_max' => 'integer',
-        'provider'  => 'integer',
         'minutes'   => 'integer',
         'is_active' => 'boolean',
     ];

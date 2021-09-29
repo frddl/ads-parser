@@ -12,13 +12,15 @@ use App\Models\AdItem;
 use App\Models\Result;
 use Exception;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use LogicException;
 
-class ParseUpdatesJob implements ShouldQueue
+class ParseUpdatesJob
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     private $adItem;
+    private $parser;
 
     /**
      * Create a new job instance.
@@ -28,6 +30,7 @@ class ParseUpdatesJob implements ShouldQueue
     public function __construct($adItem)
     {
         $this->adItem = $adItem;
+        $this->providerClass = config('parsers.strategy.' . $adItem->provider);
     }
 
     /**
@@ -39,13 +42,7 @@ class ParseUpdatesJob implements ShouldQueue
     {
         $keyword = $this->adItem->keyword;
         $blacklisted = explode(",", $this->adItem->blacklisted);
-
-        $provider = $this->adItem->provider;
-
-        $providerClass = $this->config['strategy'][$provider];
-        $siteConfig = $this->config['sites'][$provider];
-
-        $parser = new $providerClass($this->adItem);
+        $parser = (new $this->providerClass($this->adItem));
 
         $results = $parser->parse();
         foreach ($results as $result) {
@@ -62,17 +59,21 @@ class ParseUpdatesJob implements ShouldQueue
                 }
 
                 if ($blacklisted_flag) {
-                    $instance = Result::create([
-                        'ad_item_id' => $this->adItem->id,
-                        'result_link' => $result->link,
-                    ]);
+                    $instance = Result::updateOrCreate(
+                        [
+                            'result_link' => $result['link'],
+                        ],
+                        [
+                            'result_link' => $result['link'],
+                            'ad_item_id' => $this->adItem->id,
+                        ]
+                    );
 
-                    $instance->property()->create(Arr::except($result, 'link'));
+                    $instance->property()->create(json_encode(Arr::except($result, 'link'))); // TODO: json_encode is not working, find another way
                     $instance->save();
                 }
             }
         }
-        return 0;
     }
 
     public function numeric($input): int
