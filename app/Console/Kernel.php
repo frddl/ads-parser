@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Jobs\ParseUpdatesJob;
+use App\Models\AdItem;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,7 +26,33 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $periods = config('parsers.periods');
+
+        foreach ($periods as $period) {
+            $items = AdItem::every($period)->active()->get();
+            foreach ($items as $item) {
+                switch ($period) {
+                    case 1:
+                        $schedule->job(new ParseUpdatesJob($item))->everyMinute();
+                        break;
+                    case 5:
+                        $schedule->job(new ParseUpdatesJob($item))->everyFiveMinutes();
+                        break;
+                    case 15:
+                        $schedule->job(new ParseUpdatesJob($item))->everyFifteenMinutes();
+                        break;
+                    case 30:
+                        $schedule->job(new ParseUpdatesJob($item))->everyThirtyMinutes();
+                        break;
+                    case 60:
+                        $schedule->job(new ParseUpdatesJob($item))->hourly();
+                        break;
+                    case 120:
+                        $schedule->job(new ParseUpdatesJob($item))->everyTwoHours();
+                        break;
+                }
+            }
+        }
     }
 
     /**
@@ -34,7 +62,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

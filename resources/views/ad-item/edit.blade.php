@@ -91,7 +91,7 @@
                                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 md:text-sm">
                                                 @foreach (config('parsers.periods') as $key)
                                                     <option value="{{ $key }}" @if ($adItem->minutes == $key) selected @endif>
-                                                        {{ $key . ' ' . __('minutes') }}
+                                                        {{ $key . ' ' . __('minute(s)') }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -106,7 +106,7 @@
                                                 <option value="1" @if ($adItem->is_active == 1) selected @endif>
                                                     {{ __('Enabled') }}
                                                 </option>
-                                                <option value="0" @if ($adItem->is_active == 1) selected @endif>
+                                                <option value="0" @if ($adItem->is_active == 0) selected @endif>
                                                     {{ __('Disabled') }}
                                                 </option>
                                             </select>

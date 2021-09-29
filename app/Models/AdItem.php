@@ -28,9 +28,16 @@ class AdItem extends Model
         'is_active' => 'boolean',
     ];
 
+    // ->active()
     public function scopeActive($query)
     {
         return $query->where('is_active', true);
+    }
+
+    // ->every(15)
+    public function scopeEvery($query, $minutes)
+    {
+        return $query->where('minutes', $minutes);
     }
 
     public function results(): HasMany

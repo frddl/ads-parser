@@ -17,14 +17,14 @@ class ParseUpdates extends Command
      *
      * @var string
      */
-    protected $signature = 'ads:parse {adItem} {--provider=} {--min=0} {--max=' . PHP_INT_MAX . '} {--blacklisted=[]}';
+    protected $signature = 'ads:parse {keyword} {--provider=} {--min=0} {--max=' . PHP_INT_MAX . '} {--blacklisted=[]}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Parse the updates using the CLI interface. Usage: php artisan ads:parse \'adItem\' --provider=tap_az --min=10 --max=50 --blacklisted="word1,word2"';
+    protected $description = 'Parse the updates using the CLI interface. Usage: php artisan ads:parse \'keyword\' --provider=tap_az --min=10 --max=50 --blacklisted="word1,word2"';
 
     public $config;
 
@@ -46,10 +46,7 @@ class ParseUpdates extends Command
      */
     public function handle()
     {
-        $adItem = AdItem::find($this->argument('adItem'));
-        if (!$adItem) throw new Exception('Ad item does not exist.');
-
-        $keyword = $adItem->keyword;
+        $keyword = $this->argument('keyword');
         $price_min = $this->option('min');
         $price_max = $this->option('max');
 
@@ -62,7 +59,7 @@ class ParseUpdates extends Command
         $providerClass = $this->config['strategy'][$provider];
         $siteConfig = $this->config['sites'][$provider];
 
-        $parser = new $providerClass($adItem);
+        $parser = new $providerClass(null);
 
         $results = $parser->parse();
         foreach ($results as $result) {
@@ -79,13 +76,7 @@ class ParseUpdates extends Command
                 }
 
                 if ($blacklisted_flag) {
-                    $instance = Result::create([
-                        'ad_item_id' => $adItem->id,
-                        'result_link' => $result->link,
-                    ]);
-
-                    $instance->property()->create(Arr::except($result, 'link'));
-                    $instance->save();
+                    print_r($result);
                 }
             }
         }
