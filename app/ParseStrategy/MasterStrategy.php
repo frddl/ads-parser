@@ -2,6 +2,8 @@
 
 namespace App\ParseStrategy;
 
+use App\Library\Parser;
+
 class MasterStrategy implements parseStrategy
 {
     public $conf_path = '';
@@ -22,7 +24,16 @@ class MasterStrategy implements parseStrategy
 
     public function parse(): array
     {
-        return [];
+        $ads = [];
+
+        $parser = new Parser($this->getConfig());
+        $parser->getAds();
+
+        if (count($parser->ads) > 0) {
+            $ads = $parser->ads;
+        }
+
+        return $ads;
     }
 
     public function generateAdUrl(): string

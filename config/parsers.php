@@ -4,8 +4,24 @@ return [
     'sites' => [
         'tap_az'    => [
             'url' => 'https://tap.az/',
+            'start_path' => 'https://tap.az/elanlar',
             'route_prefix' => 'elanlar/',
             'name' => 'Tap.az',
+            'ad_selector' => 'div.products-i',
+            'properties' => [
+                'link' => [
+                    'selector' => 'a.products-link',
+                    'attribute' => 'href',
+                ],
+                'name' => [
+                    'selector' => 'div.products-name',
+                    'attribute' => 'innerText',
+                ],
+                'price' => [
+                    'selector' => 'span.price-val',
+                    'attribute' => 'innerText'
+                ],
+            ]
         ],
 
         'turbo_az'  => [
