@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $periods = config('parsers.periods');
-
+        // TODO: fix schedule running
         foreach ($periods as $period) {
             $items = AdItem::every($period)->active()->get();
             foreach ($items as $item) {
