@@ -47,7 +47,7 @@ class Parser
                 if ($this->config['convert_currency'] && isset($ad['price'])) {
                     $currencyContainingString = strip_tags($product->find($this->config['currency_selector'], 0));
                     foreach ($this->config['currency_variations'] as $variation) {
-                        if (preg_match('/' . implode('|', $variation['matches']) . '/i', $currencyContainingString)) {
+                        if (preg_match('/' . implode("|", $variation['matches']) . '/i', strtolower($currencyContainingString))) {
                             $converter = new CurrencyConverter($variation['multiplier']);
                             $ad['price'] = $converter->amount($ad['price']);
                             break;

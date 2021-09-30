@@ -26,6 +26,10 @@ return [
             'currency_selector' => 'div.product-price',
             'currency_variations' => [
                 [
+                    'matches' => ['azn', '₼'],
+                    'multiplier' => 1,
+                ],
+                [
                     'matches' => ['usd', '$'],
                     'multiplier' => 1.7,
                 ],
@@ -38,7 +42,7 @@ return [
 
         'turbo_az'  => [
             'url' => 'https://turbo.az/',
-            'start_path' => 'https://turbo.az/autos',
+            'start_path' => 'https://turbo.az/autos?q%5Bmake%5D%5B%5D=4&q%5Bmodel%5D%5B%5D=149',
             'route_prefix' => 'autos/',
             'name' => 'Turbo.az',
             'ad_selector' => 'div.products-i',
@@ -59,6 +63,10 @@ return [
             'convert_currency' => true,
             'currency_selector' => 'div.product-price',
             'currency_variations' => [
+                [
+                    'matches' => ['azn', '₼'],
+                    'multiplier' => 1,
+                ],
                 [
                     'matches' => ['usd', '$'],
                     'multiplier' => 1.7,
