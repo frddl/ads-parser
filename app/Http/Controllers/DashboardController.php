@@ -12,7 +12,7 @@ class DashboardController extends Controller
 {
     public function index(Request $request): View
     {
-        $ad_items = AdItem::paginate(20);
+        $ad_items = AdItem::withCount('results')->paginate(20);
         return view('dashboard', compact('ad_items'));
     }
 

@@ -31,7 +31,7 @@ class AdItemController extends Controller
 
     public function update(Request $request, AdItem $adItem): RedirectResponse
     {
-        $adItem->update($request->all());
+        $adItem->update($request->except('_token'));
         $adItem->save();
 
         return redirect()->back()->with('message', __('Item was updated!'));

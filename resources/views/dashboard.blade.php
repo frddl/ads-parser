@@ -36,6 +36,9 @@
                                             {{ __('Keyword') }}</th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            {{ __('Results') }}</th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             {{ __('Created at') }}</th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -47,11 +50,13 @@
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $item->id }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $item->keyword }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">{{ $item->results_count }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $item->created_at }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap flex flex-wrap">
                                                 <div>
                                                     <a href="{{ route('item-results', $item->id) }}"
-                                                        class="text-gray-600 hover:text-gray-900">
+                                                        class="text-gray-600 hover:text-gray-900"
+                                                        title="{{ __('Results') }}">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
                                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -64,7 +69,8 @@
                                                 </div>
                                                 <div class="ml-2">
                                                     <a href="{{ route('edit-item', $item->id) }}"
-                                                        class="text-gray-600 hover:text-gray-900">
+                                                        class="text-gray-600 hover:text-gray-900"
+                                                        title="{{ __('Edit') }}">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                             stroke-width="2" stroke-linecap="round"
@@ -80,7 +86,8 @@
                                                 </div>
                                                 <div class="ml-2">
                                                     <form method="POST" id="ap-{{ $item->id }}"
-                                                        action="{{ route('delete-item', $item->id) }}">
+                                                        action="{{ route('delete-item', $item->id) }}"
+                                                        title="{{ __('Delete') }}">
                                                         @csrf
                                                         <a href="#"
                                                             onclick="confirm('Are you sure?') ? document.getElementById('ap-{{ $item->id }}').submit() : false"

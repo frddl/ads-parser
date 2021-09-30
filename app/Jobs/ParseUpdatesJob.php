@@ -69,7 +69,7 @@ class ParseUpdatesJob
                         ]
                     );
 
-                    $instance->property()->create(json_encode(Arr::except($result, 'link'))); // TODO: json_encode is not working, find another way
+                    $instance->property()->create(['data' => Arr::except($result, 'link')]); // TODO: json_encode is not working, find another way
                     $instance->save();
                 }
             }

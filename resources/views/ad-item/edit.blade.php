@@ -36,7 +36,7 @@
                                             <label for="keyword"
                                                 class="block text-sm font-medium text-gray-700">{{ __('Keyword') }}</label>
                                             <input type="text" name="keyword" id="keyword" autocomplete="keyword"
-                                                value="{{ old('keyword', $adItem->keyword) }}"
+                                                value="{{ old('keyword', $adItem->keyword) }}" placeholder="keyword"
                                                 class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md">
                                         </div>
 
@@ -53,12 +53,24 @@
                                             </select>
                                         </div>
 
+                                        <div class="col-span-12 md:col-span-6">
+                                            <label for="start_url"
+                                                class="block text-sm font-medium text-gray-700">{{ __('Starting URL') }}</label>
+                                            <p class="mt-1 text-sm text-gray-600">
+                                                {{ __('If not specified, the default url will be used.') }}
+                                            </p>
+                                            <input type="text" name="start_url" id="start_url" autocomplete="start_url"
+                                                value="{{ old('start_url', $adItem->start_url) }}"
+                                                placeholder="https://google.com"
+                                                class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md">
+                                        </div>
+
                                         <div class="col-span-5 md:col-span-3">
                                             <label for="price_min"
                                                 class="block text-sm font-medium text-gray-700">{{ __('Price Minimum') }}</label>
                                             <input type="number" name="price_min" id="price_min"
                                                 autocomplete="price_min"
-                                                value="{{ old('price_min', $adItem->price_min) }}"
+                                                value="{{ old('price_min', $adItem->price_min) }}" placeholder="0"
                                                 class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md">
                                         </div>
 
@@ -68,6 +80,7 @@
                                             <input type="number" name="price_max" id="price_max"
                                                 autocomplete="price_max"
                                                 value="{{ old('price_max', $adItem->price_max) }}"
+                                                placeholder="10000"
                                                 class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md">
                                         </div>
 
@@ -80,6 +93,7 @@
                                             <input type="text" name="blacklisted" id="blacklisted"
                                                 autocomplete="blacklisted"
                                                 value="{{ old('blacklisted', $adItem->blacklisted) }}"
+                                                placeholder="{{ __('word1,word2,word3') }}"
                                                 class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md">
                                         </div>
 

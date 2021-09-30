@@ -12,6 +12,7 @@ class AdItem extends Model
 
     protected $fillable = [
         'keyword',
+        'start_url',
         'price_min',
         'price_max',
         'provider',
