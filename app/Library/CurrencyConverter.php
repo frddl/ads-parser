@@ -13,7 +13,7 @@ class CurrencyConverter
 
     public function amount($amount): string
     {
-        return $this->toReadableString(numeric($amount) * $this->multiplier);
+        return $this->toReadableString(ceil(numeric($amount) * $this->multiplier));
     }
 
     private function toReadableString($number): string

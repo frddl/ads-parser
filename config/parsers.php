@@ -42,7 +42,7 @@ return [
 
         'turbo_az'  => [
             'url' => 'https://turbo.az/',
-            'start_path' => 'https://turbo.az/autos?q%5Bmake%5D%5B%5D=4&q%5Bmodel%5D%5B%5D=149',
+            'start_path' => 'https://turbo.az/autos',
             'route_prefix' => 'autos/',
             'name' => 'Turbo.az',
             'ad_selector' => 'div.products-i',
