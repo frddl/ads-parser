@@ -47,16 +47,16 @@ class Parser
                 if ($this->config['convert_currency'] && isset($ad['price'])) {
                     $currencyContainingString = strip_tags($product->find($this->config['currency_selector'], 0));
                     foreach ($this->config['currency_variations'] as $variation) {
-                        foreach ($variation['matches'] as $match) {
-                            if (Str::contains($currencyContainingString, $match)) {
-                                $converter = new CurrencyConverter($variation['multiplier']);
-                                $ad['price'] = $converter->amount($ad['price']);
-                            }
+                        if (preg_match('/' . implode('|', $variation['matches']) . '/i', $currencyContainingString)) {
+                            $converter = new CurrencyConverter($variation['multiplier']);
+                            $ad['price'] = $converter->amount($ad['price']);
+                            break;
                         }
                     }
                 }
 
-                array_push($this->ads, $ad);
+                // eliminating external links
+                if (!(Str::contains($ad['link'], 'http:') || Str::contains($ad['link'], 'https:'))) array_push($this->ads, $ad);
             }
         });
 
