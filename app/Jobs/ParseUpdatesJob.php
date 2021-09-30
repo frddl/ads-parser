@@ -49,8 +49,8 @@ class ParseUpdatesJob
             $result = $result;
 
             if (
-                $this->numeric($result['price']) >= $this->adItem->price_min &&
-                $this->numeric($result['price']) <= $this->adItem->price_max &&
+                numeric($result['price']) >= $this->adItem->price_min &&
+                numeric($result['price']) <= $this->adItem->price_max &&
                 Str::contains(strtolower($result['name']), $keyword)
             ) {
                 $blacklisted_flag = true;

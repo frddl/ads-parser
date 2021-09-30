@@ -66,8 +66,8 @@ class ParseUpdates extends Command
             $result = $result;
 
             if (
-                $this->numeric($result['price']) >= $price_min &&
-                $this->numeric($result['price']) <= $price_max &&
+                numeric($result['price']) >= $price_min &&
+                numeric($result['price']) <= $price_max &&
                 Str::contains(strtolower($result['name']), $keyword)
             ) {
                 $blacklisted_flag = true;
@@ -81,10 +81,5 @@ class ParseUpdates extends Command
             }
         }
         return 0;
-    }
-
-    public function numeric($input): int
-    {
-        return intval(preg_replace('/[^0-9]/', '', $input));
     }
 }

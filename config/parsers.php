@@ -21,6 +21,18 @@ return [
                     'selector' => 'span.price-val',
                     'attribute' => 'innerText'
                 ],
+            ],
+            'convert_currency' => false,
+            'currency_selector' => 'div.product-price',
+            'currency_variations' => [
+                [
+                    'matches' => ['usd', '$'],
+                    'multiplier' => 1.7,
+                ],
+                [
+                    'matches' => ['eur', '€'],
+                    'multiplier' => 2,
+                ]
             ]
         ],
 
@@ -44,6 +56,18 @@ return [
                     'attribute' => 'innerText'
                 ],
             ],
+            'convert_currency' => true,
+            'currency_selector' => 'div.product-price',
+            'currency_variations' => [
+                [
+                    'matches' => ['usd', '$'],
+                    'multiplier' => 1.7,
+                ],
+                [
+                    'matches' => ['eur', '€'],
+                    'multiplier' => 2,
+                ]
+            ]
         ],
 
         // 'lalafo_az' => [
@@ -73,5 +97,7 @@ return [
         '30',
         '60',
         '120',
-    ]
+    ],
+
+    'currency_string' => 'AZN',
 ];

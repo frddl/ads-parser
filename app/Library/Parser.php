@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Log;
 use voku\helper\HtmlDomParser;
+use Illuminate\Support\Str;
 
 class Parser
 {
@@ -41,6 +42,18 @@ class Parser
                 $ad = [];
                 foreach ($this->config['properties'] as $name => $properties) {
                     $ad[$name] = strip_tags($product->find($properties['selector'], 0)->{$properties['attribute']});
+                }
+
+                if ($this->config['convert_currency'] && isset($ad['price'])) {
+                    $currencyContainingString = strip_tags($product->find($this->config['currency_selector'], 0));
+                    foreach ($this->config['currency_variations'] as $variation) {
+                        foreach ($variation['matches'] as $match) {
+                            if (Str::contains($currencyContainingString, $match)) {
+                                $converter = new CurrencyConverter($variation['multiplier']);
+                                $ad['price'] = $converter->amount($ad['price']);
+                            }
+                        }
+                    }
                 }
 
                 array_push($this->ads, $ad);
