@@ -34,7 +34,7 @@ class Parser
             foreach ($dom->find($this->config['ad_selector']) as $product) {
                 $ad = [];
                 foreach ($this->config['properties'] as $name => $properties) {
-                    $ad[$name] = $product->find($properties['selector'], 0)->{$properties['attribute']};
+                    $ad[$name] = strip_tags($product->find($properties['selector'], 0)->{$properties['attribute']});
                 }
 
                 array_push($this->ads, $ad);

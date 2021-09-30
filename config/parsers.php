@@ -26,8 +26,24 @@ return [
 
         'turbo_az'  => [
             'url' => 'https://turbo.az/',
+            'start_path' => 'https://turbo.az/autos',
             'route_prefix' => 'autos/',
             'name' => 'Turbo.az',
+            'ad_selector' => 'div.products-i',
+            'properties' => [
+                'link' => [
+                    'selector' => 'a.products-i__link',
+                    'attribute' => 'href',
+                ],
+                'name' => [
+                    'selector' => 'div.products-i__name',
+                    'attribute' => 'innerText',
+                ],
+                'price' => [
+                    'selector' => 'div.product-price',
+                    'attribute' => 'innerText'
+                ],
+            ],
         ],
 
         // 'lalafo_az' => [

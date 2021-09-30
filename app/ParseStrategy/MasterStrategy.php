@@ -25,8 +25,10 @@ class MasterStrategy implements parseStrategy
     public function parse(): array
     {
         $ads = [];
+        $url = null;
+        if ($this->data) $url = $this->data->start_url;
 
-        $parser = new Parser($this->getConfig(), $this->data->start_url);
+        $parser = new Parser($this->getConfig(), $url);
         $parser->getAds();
 
         if (count($parser->ads) > 0) {
