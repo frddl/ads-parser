@@ -58,7 +58,7 @@
 
                                         <div class="col-span-5 md:col-span-3">
                                             <label for="price_min"
-                                                class="block text-sm font-medium text-gray-700">{{ __('Price Minimum') }}</label>
+                                                class="block text-sm font-medium text-gray-700">{{ __('Price Minimum, AZN') }}</label>
                                             <input type="number" name="price_min" id="price_min"
                                                 autocomplete="price_min" value="{{ old('price_min', '') }}"
                                                 placeholder="0"
@@ -67,7 +67,7 @@
 
                                         <div class="col-span-7 md:col-span-3">
                                             <label for="price_max"
-                                                class="block text-sm font-medium text-gray-700">{{ __('Price Maximum') }}</label>
+                                                class="block text-sm font-medium text-gray-700">{{ __('Price Maximum, AZN') }}</label>
                                             <input type="number" name="price_max" id="price_max"
                                                 autocomplete="price_max" value="{{ old('price_max', '') }}"
                                                 placeholder="10000"
