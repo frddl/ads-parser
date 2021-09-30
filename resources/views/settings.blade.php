@@ -115,7 +115,7 @@
                                 <h3 class="text-lg font-medium leading-6 text-gray-900">{{ __('Notifications') }}
                                 </h3>
                                 <p class="mt-1 text-sm text-gray-600">
-                                    {{ __("Decide which communications you\\'d like to receive and how.") }}
+                                    {{ __('Decide which communications you would like to receive and how.') }}
                                 </p>
                             </div>
                         </div>
