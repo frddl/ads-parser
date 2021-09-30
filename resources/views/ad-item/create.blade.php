@@ -16,7 +16,7 @@
                                 <h3 class="text-lg font-medium leading-6 text-gray-900">{{ __('General Settings') }}
                                 </h3>
                                 <p class="mt-1 text-sm text-gray-600">
-                                    {{ __('Use a real address where you can receive mail.') }}
+                                    {{ __('To get precisely correct ad items, please, fill all the necessary information.') }}
                                 </p>
                             </div>
                         </div>
