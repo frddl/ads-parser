@@ -25,7 +25,13 @@ class Parser
         $url =  $this->config['start_path'];
         if ($this->start_url) $url = $this->start_url;
 
-        $request = new Request('GET', $url);
+        $ua = new UserAgent();
+        $request = new Request('GET', $url, [
+            'headers' => [
+                'User-Agent' => $ua->string(),
+            ]
+        ]);
+
         $promise = $client->sendAsync($request)->then(function ($response) {
             $html = $response->getBody()->getContents();
 
