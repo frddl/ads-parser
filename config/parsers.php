@@ -3,9 +3,9 @@
 return [
     'sites' => [
         'tap_az'    => [
-            'url' => 'https://tap.az/',
+            'url' => 'https://tap.az',
             'start_path' => 'https://tap.az/elanlar',
-            'route_prefix' => 'elanlar/',
+            'route_prefix' => '',
             'name' => 'Tap.az',
             'ad_selector' => 'div.products-i',
             'properties' => [
@@ -27,9 +27,9 @@ return [
         ],
 
         'turbo_az'  => [
-            'url' => 'https://turbo.az/',
+            'url' => 'https://turbo.az',
             'start_path' => 'https://turbo.az/autos',
-            'route_prefix' => 'autos/',
+            'route_prefix' => '',
             'name' => 'Turbo.az',
             'ad_selector' => 'div.products-i',
             'properties' => [
@@ -51,9 +51,9 @@ return [
         ],
 
         'bina_az'  => [
-            'url' => 'https://bina.az/',
+            'url' => 'https://bina.az',
             'start_path' => 'https://bina.az/items/all',
-            'route_prefix' => 'items/',
+            'route_prefix' => '',
             'name' => 'Bina.az',
             'ad_selector' => 'div.items-i',
             'properties' => [
