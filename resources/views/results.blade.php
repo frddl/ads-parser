@@ -37,7 +37,13 @@
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $result->id }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $result->result_link }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{ $result->adItem->keyword }}
+                                            @empty($result->item->keyword)
+                                                <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-gray-500 rounded">
+                                                    {{ __('Not specified') }}
+                                                </span>
+                                            @else
+                                                {{ $result->item->keyword }}
+                                            @endempty
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $result->created_at }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap flex flex-wrap">

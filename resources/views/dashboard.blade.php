@@ -52,11 +52,32 @@
                                     @foreach ($ad_items as $item)
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $item->id }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap">{{ $item->keyword }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap">{{ $item->results_count }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            @empty($item->keyword)
+                                                <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-gray-500 rounded">
+                                                    {{ __('Not specified') }}
+                                                </span>
+                                            @else
+                                                {{ $item->keyword }}
+                                            @endempty
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-green-500 rounded">
+                                                {{ $item->results_count }}
+                                                </span>
+                                            </td>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $item->created_at }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{ $item->is_active ? __('Enabled') : __('Disabled') }}</td>
+                                                @if($item->is_active)
+                                                <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-green-500 rounded">
+                                                {{ __('Enabled') }}
+                                                </span>
+                                                @else
+                                                <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-500 rounded">
+                                                {{ __('Disabled') }}
+                                                </span>
+                                                @endif
+                                            </td>
                                             <td class="px-6 py-4 whitespace-nowrap flex flex-wrap">
                                                 <div>
                                                     <a href="{{ route('item-results', $item->id) }}"

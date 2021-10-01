@@ -15,7 +15,7 @@ class CreateAdItemsTable extends Migration
     {
         Schema::create('ad_items', function (Blueprint $table) {
             $table->id();
-            $table->string('keyword');
+            $table->string('keyword')->nullable();
             $table->integer('price_min')->nullable();
             $table->integer('price_max')->nullable();
             $table->string('provider');
