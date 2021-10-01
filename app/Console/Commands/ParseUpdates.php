@@ -68,7 +68,7 @@ class ParseUpdates extends Command
             if (
                 numeric($result['price']) >= $price_min &&
                 numeric($result['price']) <= $price_max &&
-                Str::contains(strtolower($result['name']), $keyword)
+                (empty($keyword) || Str::contains(strtolower($result['name']), $keyword))
             ) {
                 $blacklisted_flag = true;
                 foreach ($blacklisted as $word) {
