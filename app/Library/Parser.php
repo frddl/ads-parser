@@ -12,11 +12,13 @@ class Parser
 {
     public $ads = [];
     private $config;
+    private $currency_variations = [];
     private $start_url;
 
     public function __construct($config, $start_url = null)
     {
         $this->config = $config;
+        $this->currency_variations = config('parsers.currency_variations');
         $this->start_url = $start_url;
     }
 
@@ -46,7 +48,7 @@ class Parser
 
                 if ($this->config['convert_currency'] && isset($ad['price'])) {
                     $currencyContainingString = strip_tags($product->find($this->config['currency_selector'], 0));
-                    foreach ($this->config['currency_variations'] as $variation) {
+                    foreach ($this->currency_variations as $variation) {
                         if (preg_match('/' . implode("|", $variation['matches']) . '/i', strtolower($currencyContainingString))) {
                             $converter = new CurrencyConverter($variation['multiplier']);
                             $ad['price'] = $converter->amount($ad['price']);

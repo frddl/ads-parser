@@ -24,20 +24,6 @@ return [
             ],
             'convert_currency' => false,
             'currency_selector' => 'div.product-price',
-            'currency_variations' => [
-                [
-                    'matches' => ['azn', '₼'],
-                    'multiplier' => 1,
-                ],
-                [
-                    'matches' => ['usd', '$'],
-                    'multiplier' => 1.7,
-                ],
-                [
-                    'matches' => ['eur', '€'],
-                    'multiplier' => 2,
-                ]
-            ]
         ],
 
         'turbo_az'  => [
@@ -62,20 +48,30 @@ return [
             ],
             'convert_currency' => true,
             'currency_selector' => 'div.product-price',
-            'currency_variations' => [
-                [
-                    'matches' => ['azn', '₼'],
-                    'multiplier' => 1,
+        ],
+
+        'bina_az'  => [
+            'url' => 'https://bina.az/',
+            'start_path' => 'https://bina.az/items/all',
+            'route_prefix' => 'items/',
+            'name' => 'Bina.az',
+            'ad_selector' => 'div.items-i',
+            'properties' => [
+                'link' => [
+                    'selector' => 'a.item_link',
+                    'attribute' => 'href',
                 ],
-                [
-                    'matches' => ['usd', '$'],
-                    'multiplier' => 1.7,
+                'name' => [
+                    'selector' => 'div.location',
+                    'attribute' => 'innerText',
                 ],
-                [
-                    'matches' => ['eur', '€'],
-                    'multiplier' => 2,
-                ]
-            ]
+                'price' => [
+                    'selector' => 'span.price-val',
+                    'attribute' => 'innerText'
+                ],
+            ],
+            'convert_currency' => true,
+            'currency_selector' => 'span.price-cur',
         ],
 
         // 'lalafo_az' => [
@@ -83,19 +79,13 @@ return [
         //     'route_prefix' => '',
         //     'name' => 'Lalafo.az',
         // ],
-
-        // 'bina_az'   => [
-        //     'url' => 'https://bina.az/',
-        //     'route_prefix' => 'items/',
-        //     'name' => 'Bina.az',
-        // ],
     ],
 
     'strategy' => [
         'tap_az'    => App\ParseStrategy\TapAz::class,
         'turbo_az'  => App\ParseStrategy\TurboAz::class,
+        'bina_az'   => App\ParseStrategy\BinaAz::class,
         // 'lalafo_az' => App\ParseStrategy\LalafoAz::class,
-        // 'bina_az'   => App\ParseStrategy\BinaAz::class,
     ],
 
     'periods' => [
@@ -108,4 +98,18 @@ return [
     ],
 
     'currency_string' => 'AZN',
+    'currency_variations' => [
+        [
+            'matches' => ['azn', '₼'],
+            'multiplier' => 1,
+        ],
+        [
+            'matches' => ['usd', '$'],
+            'multiplier' => 1.7,
+        ],
+        [
+            'matches' => ['eur', '€'],
+            'multiplier' => 2,
+        ]
+    ]
 ];
