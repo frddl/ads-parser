@@ -74,18 +74,36 @@ return [
             'currency_selector' => 'span.price-cur',
         ],
 
-        // 'lalafo_az' => [
-        //     'url' => 'https://lalafo.az/',
-        //     'route_prefix' => '',
-        //     'name' => 'Lalafo.az',
-        // ],
+        'lalafo_az' => [
+            'url' => 'https://lalafo.az/',
+            'start_path' => 'https://lalafo.az/',
+            'route_prefix' => '',
+            'name' => 'Lalafo.az',
+            'ad_selector' => 'div.adTile-mainInfo',
+            'properties' => [
+                'link' => [
+                    'selector' => 'a.adTile-mainInfo-link',
+                    'attribute' => 'href',
+                ],
+                'name' => [
+                    'selector' => 'a.adTile-title',
+                    'attribute' => 'innerText',
+                ],
+                'price' => [
+                    'selector' => 'p.adTile-price',
+                    'attribute' => 'innerText'
+                ],
+            ],
+            'convert_currency' => true,
+            'currency_selector' => 'p.adTile-price',
+        ],
     ],
 
     'strategy' => [
         'tap_az'    => App\ParseStrategy\TapAz::class,
         'turbo_az'  => App\ParseStrategy\TurboAz::class,
         'bina_az'   => App\ParseStrategy\BinaAz::class,
-        // 'lalafo_az' => App\ParseStrategy\LalafoAz::class,
+        'lalafo_az' => App\ParseStrategy\LalafoAz::class,
     ],
 
     'periods' => [
