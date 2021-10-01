@@ -42,6 +42,9 @@
                                             {{ __('Created at') }}</th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            {{ __('Status') }}</th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             {{ __('Actions') }}</th>
                                     </tr>
                                 </thead>
@@ -52,6 +55,8 @@
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $item->keyword }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $item->results_count }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $item->created_at }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                {{ $item->is_active ? __('Enabled') : __('Disabled') }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap flex flex-wrap">
                                                 <div>
                                                     <a href="{{ route('item-results', $item->id) }}"
