@@ -48,7 +48,7 @@
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $result->created_at }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap flex flex-wrap">
                                                 <div>
-                                                    <a href="{{ route('result-link', [$result->adItem->id, $result->id]) }}"
+                                                    <a target="_blank" href="{{ route('result-link', [$result->adItem->id, $result->id]) }}"
                                                         class="text-gray-600 hover:text-gray-900">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
                                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
