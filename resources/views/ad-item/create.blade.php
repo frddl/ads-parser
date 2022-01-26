@@ -23,6 +23,8 @@
                         <div class="mt-5 md:mt-0 md:col-span-2">
                             <div class="shadow overflow-hidden rounded-md">
                                 <div class="px-4 py-5 bg-white md:p-6">
+                                    <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-12 md:col-span-4">
                                             <label for="keyword"
@@ -57,20 +59,24 @@
                                         </div>
 
                                         <div class="col-span-5 md:col-span-3">
-                                            <label for="price_min"
-                                                class="block text-sm font-medium text-gray-700">{{ __('Price Minimum, AZN') }}</label>
+                                            <label for="price_min" class="block text-sm font-medium text-gray-700">
+                                                {{ __('Price Minimum, AZN') }}
+                                                <span class="text-red-600">*</span>
+                                            </label>
                                             <input type="number" name="price_min" id="price_min"
                                                 autocomplete="price_min" value="{{ old('price_min', '') }}"
-                                                placeholder="0"
+                                                placeholder="0" required
                                                 class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md">
                                         </div>
 
                                         <div class="col-span-7 md:col-span-3">
-                                            <label for="price_max"
-                                                class="block text-sm font-medium text-gray-700">{{ __('Price Maximum, AZN') }}</label>
+                                            <label for="price_max" class="block text-sm font-medium text-gray-700">
+                                                {{ __('Price Maximum, AZN') }}
+                                                <span class="text-red-600">*</span>
+                                            </label>
                                             <input type="number" name="price_max" id="price_max"
                                                 autocomplete="price_max" value="{{ old('price_max', '') }}"
-                                                placeholder="10000"
+                                                placeholder="10000" required
                                                 class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md">
                                         </div>
 

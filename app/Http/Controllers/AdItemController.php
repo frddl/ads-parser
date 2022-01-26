@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdItemStoreRequest;
 use App\Models\AdItem;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -15,7 +16,7 @@ class AdItemController extends Controller
         return view('ad-item.create', compact('providers'));
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(AdItemStoreRequest $request): RedirectResponse
     {
         $data = $request->except('_token');
         AdItem::create($data);
