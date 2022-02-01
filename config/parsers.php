@@ -24,16 +24,16 @@ return [
             ],
             'notification' => [
                 'image' => [
-                    'selector' => '',
-                    'attribute' => '',
+                    'selector' => 'img',
+                    'attribute' => 'src',
                 ],
                 'title' => [
-                    'selector' => '',
-                    'attribute' => ''
+                    'selector' => 'div.products-name',
+                    'attribute' => 'innerText'
                 ],
                 'description' => [
-                    'selector' => '',
-                    'attribute' => ''
+                    'selector' => 'div.products-price-container',
+                    'attribute' => 'innerText'
                 ],
             ],
             'convert_currency' => false,
@@ -100,16 +100,16 @@ return [
             ],
             'notification' => [
                 'image' => [
-                    'selector' => '',
-                    'attribute' => '',
+                    'selector' => 'img',
+                    'attribute' => 'src',
                 ],
                 'title' => [
-                    'selector' => '',
-                    'attribute' => ''
+                    'selector' => 'div.location',
+                    'attribute' => 'innerText',
                 ],
                 'description' => [
-                    'selector' => '',
-                    'attribute' => ''
+                    'selector' => 'ul.name',
+                    'attribute' => 'innerText',
                 ],
             ],
             'convert_currency' => true,
@@ -138,16 +138,16 @@ return [
             ],
             'notification' => [
                 'image' => [
-                    'selector' => '',
-                    'attribute' => '',
+                    'selector' => 'img',
+                    'attribute' => 'src',
                 ],
                 'title' => [
-                    'selector' => '',
-                    'attribute' => ''
+                    'selector' => 'a.adTile-title',
+                    'attribute' => 'innerText',
                 ],
                 'description' => [
-                    'selector' => '',
-                    'attribute' => ''
+                    'selector' => 'span.adTile-SEO-description',
+                    'attribute' => 'innerText'
                 ],
             ],
             'convert_currency' => true,

@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use NotificationChannels\Telegram\TelegramMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 use NotificationChannels\Telegram\TelegramChannel;
 use NotificationChannels\Telegram\TelegramFile;
@@ -57,13 +58,14 @@ class ResultCreated extends Notification implements ShouldQueue
     public function toTelegram($notifiable)
     {
         $property = $this->result->property->data;
-        Log::debug($property);
 
         $adItem = $this->result->adItem;
         $ad_url = config('parsers.sites.' . $adItem->provider)['url'] . $this->result->result_link;
 
         $settings = app(GeneralSettings::class);
-        $content = __('New ad');
+        App::setLocale($settings->language);
+
+        $content = __('Keyword');
 
         if ($adItem->keyword) {
             $content .= " ($adItem->keyword):";
