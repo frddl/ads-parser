@@ -11,6 +11,7 @@ use Illuminate\Queue\SerializesModels;
 use App\Models\AdItem;
 use App\Models\Result;
 use App\Models\ResultProperty;
+use App\ParseStrategy\TapAz;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
@@ -73,6 +74,8 @@ class ParseUpdatesJob
 
                         $instance->save();
 
+                        $result['notification_image'] = $this->formattedUrl($result['notification_image'], $parser);
+
                         ResultProperty::create(
                             [
                                 'result_id' => $instance->id,
@@ -88,5 +91,14 @@ class ParseUpdatesJob
     public function numeric($input): int
     {
         return intval(preg_replace('/[^0-9]/', '', $input));
+    }
+
+    public function formattedUrl($url, $parser): string
+    {
+        if ($parser instanceof TapAz) { // fuck you tap.az
+            return 'https:' . $url;
+        }
+
+        return $url;
     }
 }
