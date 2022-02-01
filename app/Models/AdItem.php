@@ -44,4 +44,14 @@ class AdItem extends Model
     {
         return $this->hasMany(Result::class)->orderByDesc('id');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($adItem) { // before delete() method call this
+            $adItem->results()->delete();
+            // do the rest of the cleanup...
+        });
+    }
 }
