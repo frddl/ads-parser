@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Result;
+use App\Models\ResultProperty;
 use App\Notifications\ResultCreated;
 use App\Settings\GeneralSettings;
 use Illuminate\Support\Facades\Notification;
@@ -15,15 +16,15 @@ class ResultObserver
      * @param  \App\Models\Result  $result
      * @return void
      */
-    public function created(Result $result)
+    public function created(ResultProperty $resultProperty)
     {
         $settings = app(GeneralSettings::class);
         if ($settings->telegram_notifications_enabled) {
-            Notification::route('telegram', $settings->telegram_user_id)->notify(new ResultCreated($result));
+            Notification::route('telegram', $settings->telegram_user_id)->notify(new ResultCreated($resultProperty->result));
         }
 
         if ($settings->email_notifications_enabled) {
-            Notification::route('email', $settings->email)->notify(new ResultCreated($result));
+            Notification::route('email', $settings->email)->notify(new ResultCreated($resultProperty->result));
         }
     }
 
@@ -33,7 +34,7 @@ class ResultObserver
      * @param  \App\Models\Result  $result
      * @return void
      */
-    public function updated(Result $result)
+    public function updated(ResultProperty $resultProperty)
     {
         //
     }
@@ -44,7 +45,7 @@ class ResultObserver
      * @param  \App\Models\Result  $result
      * @return void
      */
-    public function deleted(Result $result)
+    public function deleted(ResultProperty $resultProperty)
     {
         //
     }
@@ -55,7 +56,7 @@ class ResultObserver
      * @param  \App\Models\Result  $result
      * @return void
      */
-    public function restored(Result $result)
+    public function restored(ResultProperty $resultProperty)
     {
         //
     }
@@ -66,7 +67,7 @@ class ResultObserver
      * @param  \App\Models\Result  $result
      * @return void
      */
-    public function forceDeleted(Result $result)
+    public function forceDeleted(ResultProperty $resultProperty)
     {
         //
     }

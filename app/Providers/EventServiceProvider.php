@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Result;
+use App\Models\ResultProperty;
 use App\Observers\ResultObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -30,6 +31,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-        Result::observe(ResultObserver::class);
+        ResultProperty::observe(ResultObserver::class);
     }
 }

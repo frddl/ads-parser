@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\ResultProperty;
 use App\Settings\GeneralSettings;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -10,6 +11,7 @@ use NotificationChannels\Telegram\TelegramMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Log;
 use NotificationChannels\Telegram\TelegramChannel;
+use NotificationChannels\Telegram\TelegramFile;
 
 class ResultCreated extends Notification implements ShouldQueue
 {
@@ -24,7 +26,6 @@ class ResultCreated extends Notification implements ShouldQueue
      */
     public function __construct($result)
     {
-        Log::debug($result);
         $this->result = $result;
     }
 
@@ -55,14 +56,23 @@ class ResultCreated extends Notification implements ShouldQueue
 
     public function toTelegram($notifiable)
     {
+        $property = $this->result->property->data;
+        Log::debug($property);
+
         $adItem = $this->result->adItem;
         $ad_url = config('parsers.sites.' . $adItem->provider)['url'] . $this->result->result_link;
 
         $settings = app(GeneralSettings::class);
+        $content = __('New ad');
 
-        return TelegramMessage::create()
+        if ($adItem->keyword) {
+            $content .= " ($adItem->keyword):";
+        }
+
+        return TelegramFile::create()
             ->token($settings->telegram_bot_token)
-            ->content(__('New ad') . ": " . $adItem->keyword)
+            ->content($content . "\n*" . $property['notification_title'] . "*\n\n" . $property['notification_description'])
+            ->photo($property['notification_image'])
             ->button(__('Ad link'), $ad_url)
             ->button(__('Open System'), config('app.url'));
     }

@@ -10,17 +10,19 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\AdItem;
 use App\Models\Result;
+use App\Models\ResultProperty;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use LogicException;
+use PhpParser\Builder\Property;
 
 class ParseUpdatesJob
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     private $adItem;
-    private $parser;
+    private $providerClass;
 
     /**
      * Create a new job instance.
@@ -59,18 +61,25 @@ class ParseUpdatesJob
                 }
 
                 if ($blacklisted_flag) {
-                    $instance = Result::updateOrCreate(
-                        [
-                            'result_link' => $result['link'],
-                        ],
-                        [
-                            'result_link' => $result['link'],
-                            'ad_item_id' => $this->adItem->id,
-                        ]
-                    );
+                    $resultExists = Result::where('result_link', $result['link'])->count();
 
-                    $instance->property()->create(['data' => Arr::except($result, 'link')]);
-                    $instance->save();
+                    if (!$resultExists) {
+                        $instance = Result::create(
+                            [
+                                'result_link' => $result['link'],
+                                'ad_item_id' => $this->adItem->id,
+                            ]
+                        );
+
+                        $instance->save();
+
+                        ResultProperty::create(
+                            [
+                                'result_id' => $instance->id,
+                                'data' => Arr::except($result, 'link'),
+                            ]
+                        );
+                    }
                 }
             }
         }

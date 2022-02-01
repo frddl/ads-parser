@@ -133,7 +133,7 @@
                                                 <div class="flex items-center h-5">
                                                     <input id="email_notifications_enabled"
                                                         name="email_notifications_enabled" type="checkbox"
-                                                        disabled="{{ $debug }}" @if ($settings->email_notifications_enabled) checked @endif
+                                                        @if ($debug) disabled="disabled" @endif @if ($settings->email_notifications_enabled) checked @endif
                                                         class="focus:ring-gray-500 h-4 w-4 text-gray-600 border-gray-300 rounded">
                                                 </div>
                                                 <div class="ml-3 text-sm">
@@ -148,7 +148,7 @@
                                                 <div class="flex items-center h-5">
                                                     <input id="telegram_notifications_enabled"
                                                         name="telegram_notifications_enabled" type="checkbox"
-                                                        disabled="{{ $debug }}" @if ($settings->telegram_notifications_enabled) checked @endif
+                                                        @if ($debug) disabled="disabled" @endif @if ($settings->telegram_notifications_enabled) checked @endif
                                                         class="focus:ring-gray-500 h-4 w-4 text-gray-600 border-gray-300 rounded">
                                                 </div>
                                                 <div class="ml-3 text-sm">

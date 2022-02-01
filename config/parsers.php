@@ -22,6 +22,20 @@ return [
                     'attribute' => 'innerText'
                 ],
             ],
+            'notification' => [
+                'image' => [
+                    'selector' => '',
+                    'attribute' => '',
+                ],
+                'title' => [
+                    'selector' => '',
+                    'attribute' => ''
+                ],
+                'description' => [
+                    'selector' => '',
+                    'attribute' => ''
+                ],
+            ],
             'convert_currency' => false,
             'currency_selector' => 'div.product-price',
         ],
@@ -43,6 +57,20 @@ return [
                 ],
                 'price' => [
                     'selector' => 'div.product-price',
+                    'attribute' => 'innerText'
+                ],
+            ],
+            'notification' => [
+                'image' => [
+                    'selector' => 'img',
+                    'attribute' => 'src',
+                ],
+                'title' => [
+                    'selector' => 'div.products-i__name',
+                    'attribute' => 'innerText'
+                ],
+                'description' => [
+                    'selector' => 'div.products-i__attributes',
                     'attribute' => 'innerText'
                 ],
             ],
@@ -70,6 +98,20 @@ return [
                     'attribute' => 'innerText'
                 ],
             ],
+            'notification' => [
+                'image' => [
+                    'selector' => '',
+                    'attribute' => '',
+                ],
+                'title' => [
+                    'selector' => '',
+                    'attribute' => ''
+                ],
+                'description' => [
+                    'selector' => '',
+                    'attribute' => ''
+                ],
+            ],
             'convert_currency' => true,
             'currency_selector' => 'span.price-cur',
         ],
@@ -92,6 +134,20 @@ return [
                 'price' => [
                     'selector' => 'p.adTile-price',
                     'attribute' => 'innerText'
+                ],
+            ],
+            'notification' => [
+                'image' => [
+                    'selector' => '',
+                    'attribute' => '',
+                ],
+                'title' => [
+                    'selector' => '',
+                    'attribute' => ''
+                ],
+                'description' => [
+                    'selector' => '',
+                    'attribute' => ''
                 ],
             ],
             'convert_currency' => true,
