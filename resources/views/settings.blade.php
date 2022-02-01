@@ -122,13 +122,18 @@
                         <div class="mt-5 md:mt-0 md:col-span-2">
                             <div class="shadow overflow-hidden rounded-md">
                                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                                    @if ($debug)
+                                        <p class="text-red-600">
+                                            {{ __('Notifications are not available in debug mode.') }}
+                                        </p>
+                                    @endif
                                     <fieldset>
                                         <div class="space-y-4">
                                             <div class="flex items-start">
                                                 <div class="flex items-center h-5">
                                                     <input id="email_notifications_enabled"
                                                         name="email_notifications_enabled" type="checkbox"
-                                                        @if ($settings->email_notifications_enabled) checked @endif
+                                                        disabled="{{ $debug }}" @if ($settings->email_notifications_enabled) checked @endif
                                                         class="focus:ring-gray-500 h-4 w-4 text-gray-600 border-gray-300 rounded">
                                                 </div>
                                                 <div class="ml-3 text-sm">
@@ -143,7 +148,7 @@
                                                 <div class="flex items-center h-5">
                                                     <input id="telegram_notifications_enabled"
                                                         name="telegram_notifications_enabled" type="checkbox"
-                                                        @if ($settings->telegram_notifications_enabled) checked @endif
+                                                        disabled="{{ $debug }}" @if ($settings->telegram_notifications_enabled) checked @endif
                                                         class="focus:ring-gray-500 h-4 w-4 text-gray-600 border-gray-300 rounded">
                                                 </div>
                                                 <div class="ml-3 text-sm">

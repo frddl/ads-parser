@@ -2,24 +2,30 @@
 
 namespace App\Notifications;
 
+use App\Settings\GeneralSettings;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use NotificationChannels\Telegram\TelegramMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Log;
+use NotificationChannels\Telegram\TelegramChannel;
 
 class ResultCreated extends Notification implements ShouldQueue
 {
     use Queueable;
+
+    private $result;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($result)
     {
-        //
+        Log::debug($result);
+        $this->result = $result;
     }
 
     /**
@@ -30,7 +36,7 @@ class ResultCreated extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail', 'telegram'];
+        return ['mail', TelegramChannel::class];
     }
 
     /**
@@ -49,10 +55,13 @@ class ResultCreated extends Notification implements ShouldQueue
 
     public function toTelegram($notifiable)
     {
-        $adItem = $notifiable->adItem;
-        $ad_url = config('parsers.sites.' . $adItem->provider)['url'] . $notifiable->result_link;
+        $adItem = $this->result->adItem;
+        $ad_url = config('parsers.sites.' . $adItem->provider)['url'] . $this->result->result_link;
+
+        $settings = app(GeneralSettings::class);
 
         return TelegramMessage::create()
+            ->token($settings->telegram_bot_token)
             ->content(__('New ad') . ": " . $adItem->keyword)
             ->button(__('Ad link'), $ad_url)
             ->button(__('Open System'), config('app.url'));

@@ -40,6 +40,7 @@
     "New ad": "New ad",
     "Not specified": "Not specified",
     "Notifications": "Notifications",
+    "Notifications are not available in debug mode.": "Notifications are not available in debug mode.",
     "Open System": "Open System",
     "Password": "Password",
     "Price Maximum, AZN": "Price Maximum, AZN",

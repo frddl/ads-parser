@@ -40,6 +40,7 @@
     "New ad": "Новый поиск",
     "Not specified": "Не указано",
     "Notifications": "Уведомления",
+    "Notifications are not available in debug mode.": "Уведомления не активны в debug режиме.",
     "Open System": "Открыть систему",
     "Password": "Пароль",
     "Price Maximum, AZN": "Цена Максимум, AZN",

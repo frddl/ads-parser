@@ -18,7 +18,8 @@ class DashboardController extends Controller
 
     public function settings(GeneralSettings $settings): View
     {
-        return view('settings', compact('settings'));
+        $debug = config('app.debug');
+        return view('settings', compact('settings', 'debug'));
     }
 
     public function settingsStore(Request $request, GeneralSettings $settings): RedirectResponse
