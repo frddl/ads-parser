@@ -20,7 +20,13 @@ class ResultObserver
     {
         $settings = app(GeneralSettings::class);
         if ($settings->telegram_notifications_enabled) {
-            Notification::route('telegram', $settings->telegram_user_id)->notify(new ResultCreated($resultProperty->result));
+            $telegram_id = $settings->telegram_user_id;
+
+            if ($resultProperty->result->adItem->telegram_id) {
+                $telegram_id = $resultProperty->result->adItem->telegram_id;
+            }
+
+            Notification::route('telegram', $telegram_id)->notify(new ResultCreated($resultProperty->result));
         }
 
         if ($settings->email_notifications_enabled) {

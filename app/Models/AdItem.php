@@ -18,6 +18,7 @@ class AdItem extends Model
         'provider',
         'blacklisted',
         'minutes',
+        'telegram_id',
         'is_active'
     ];
 
@@ -25,7 +26,8 @@ class AdItem extends Model
         'price_min' => 'integer',
         'price_max' => 'integer',
         'minutes'   => 'integer',
-        'is_active' => 'boolean',
+        'telegram_id' => 'string',
+        'is_active' => 'boolean'
     ];
 
     // ->active()

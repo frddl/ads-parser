@@ -97,7 +97,17 @@
                                                 class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md">
                                         </div>
 
-                                        <div class="col-span-6 md:col-span-3">
+                                        <div class="col-span-12 md:col-span-2">
+                                            <label for="telegram_id"
+                                                class="block text-sm font-medium text-gray-700">{{ __('Telegram ID') }}</label>
+                                            <input type="text" name="telegram_id" id="telegram_id"
+                                                autocomplete="telegram_id"
+                                                value="{{ old('telegram_id', $adItem->telegram_id) }}"
+                                                placeholder="Telegram ID"
+                                                class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md">
+                                        </div>
+
+                                        <div class="col-span-6 md:col-span-2">
                                             <label for="minutes" class="block text-sm font-medium text-gray-700">
                                                 {{ __('Repeat Every') }}
                                             </label>
@@ -111,7 +121,7 @@
                                             </select>
                                         </div>
 
-                                        <div class="col-span-6 md:col-span-3">
+                                        <div class="col-span-6 md:col-span-2">
                                             <label for="is_active" class="block text-sm font-medium text-gray-700">
                                                 {{ __('Status') }}
                                             </label>
