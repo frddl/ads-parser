@@ -75,8 +75,9 @@ class ResultCreated extends Notification implements ShouldQueue
             ->token($settings->telegram_bot_token)
             ->content($content . "\n*" . $property['notification_title'] . "*\n\n" . $property['notification_description'])
             ->photo($property['notification_image'])
-            ->button(__('Ad link'), $ad_url)
-            ->button(__('Open System'), config('app.url'));
+            ->button(__('Ad link'), $ad_url);
+
+        // ->button(__('Open System'), config('app.url'))
     }
 
     /**

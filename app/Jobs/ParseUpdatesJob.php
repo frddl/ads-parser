@@ -58,7 +58,7 @@ class ParseUpdatesJob
             ) {
                 $blacklisted_flag = true;
                 foreach ($blacklisted as $word) {
-                    $blacklisted_flag = $blacklisted_flag && !Str::contains(strtolower($result['name']), $word);
+                    $blacklisted_flag = $blacklisted_flag && !Str::contains(strtolower($result['name']), strtolower($word));
                 }
 
                 if ($blacklisted_flag) {
