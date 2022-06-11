@@ -117,8 +117,8 @@ return [
         ],
 
         'lalafo_az' => [
-            'url' => 'https://lalafo.az/',
-            'start_path' => 'https://lalafo.az/',
+            'url' => 'https://lalafo.az',
+            'start_path' => 'https://lalafo.az',
             'route_prefix' => '',
             'name' => 'Lalafo.az',
             'ad_selector' => 'div.adTile-mainInfo',
