@@ -44,7 +44,7 @@ class ParseUpdates extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $keyword = $this->argument('keyword');
         $price_min = $this->option('min');
@@ -57,22 +57,18 @@ class ParseUpdates extends Command
         $provider = $this->option('provider');
 
         $providerClass = $this->config['strategy'][$provider];
-        $siteConfig = $this->config['sites'][$provider];
-
         $parser = new $providerClass(null);
 
         $results = $parser->parse();
         foreach ($results as $result) {
-            $result = $result;
-
             if (
                 numeric($result['price']) >= $price_min &&
                 numeric($result['price']) <= $price_max &&
-                (empty($keyword) || Str::contains(strtolower($result['name']), $keyword))
+                (empty($keyword) || Str::contains(strtolower($result['name']), strtolower($keyword)))
             ) {
                 $blacklisted_flag = true;
                 foreach ($blacklisted as $word) {
-                    $blacklisted_flag = $blacklisted_flag && !Str::contains(strtolower($result['name']), $word);
+                    $blacklisted_flag = $blacklisted_flag && !Str::contains(strtolower($result['name']), strtolower($word));
                 }
 
                 if ($blacklisted_flag) {

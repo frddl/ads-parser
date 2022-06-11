@@ -49,8 +49,6 @@ class ParseUpdatesJob
 
         $results = $parser->parse();
         foreach ($results as $result) {
-            $result = $result;
-
             if (
                 numeric($result['price']) >= $this->adItem->price_min &&
                 numeric($result['price']) <= $this->adItem->price_max &&
