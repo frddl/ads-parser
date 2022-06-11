@@ -90,11 +90,13 @@
                                             <p class="mt-1 text-sm text-gray-600">
                                                 {{ __('Enter comma-separated words to be blacklisted.') }}
                                             </p>
-                                            <input type="text" name="blacklisted" id="blacklisted"
+                                            <textarea name="blacklisted" id="blacklisted"
                                                 autocomplete="blacklisted"
-                                                value="{{ old('blacklisted', $adItem->blacklisted) }}"
                                                 placeholder="{{ __('word1,word2,word3') }}"
-                                                class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md">
+                                                class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md"
+                                                rows="5">
+                                                {{ old('blacklisted', $adItem->blacklisted) }}
+                                            </textarea>
                                         </div>
 
                                         <div class="col-span-12 md:col-span-2">
