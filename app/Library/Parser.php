@@ -58,7 +58,8 @@ class Parser
                 }
 
                 foreach ($this->config['notification'] as $name => $properties) {
-                    $ad['notification_' . $name] = strip_tags($product->find($properties['selector'], 0)->{$properties['attribute']});
+                    $prop = $product->find($properties['selector'], 0)->{$properties['attribute']};
+                    $ad['notification_' . $name] = self::clean($prop);
                 }
 
                 // eliminating external links
@@ -67,5 +68,11 @@ class Parser
         });
 
         $promise->wait();
+    }
+
+    public static function clean($prop)
+    {
+        $pattern = '/&([#\dA-Za-z]+);/';
+        return preg_replace($pattern, '', strip_tags($prop));
     }
 }
