@@ -33,6 +33,7 @@ class DashboardController extends Controller
 
         $settings->telegram_notifications_enabled = $request->has('telegram_notifications_enabled');
         $settings->email_notifications_enabled = $request->has('email_notifications_enabled');
+        $settings->proxy_enabled = $request->has('proxy_enabled');
 
         $settings->save();
 

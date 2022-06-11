@@ -95,6 +95,21 @@
                                                 </option>
                                             </select>
                                         </div>
+
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="proxy_enabled" class="block text-sm font-medium text-gray-700">
+                                                Proxy
+                                            </label>
+                                            <select id="proxy_enabled" name="proxy_enabled" autocomplete="proxy_enabled"
+                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm">
+                                                <option value="0" @if ($settings->proxy_enabled == 0) selected @endif>
+                                                    {{ __('Disabled') }}
+                                                </option>
+                                                <option value="1" @if ($settings->proxy_enabled == 1) selected @endif>
+                                                    {{ __('Enabled') }}
+                                                </option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

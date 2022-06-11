@@ -2,9 +2,9 @@
 
 namespace App\Library;
 
+use App\Settings\GeneralSettings;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
-use Illuminate\Support\Facades\Log;
 use voku\helper\HtmlDomParser;
 use Illuminate\Support\Str;
 
@@ -29,11 +29,20 @@ class Parser
         if ($this->start_url) $url = $this->start_url;
 
         $ua = new UserAgent();
-        $request = new Request('GET', $url, [
+        $params = [
             'headers' => [
                 'User-Agent' => $ua->string(),
-            ]
-        ]);
+            ],
+            'proxy' => null,
+        ];
+
+        $settings = app(GeneralSettings::class);
+        if ($settings->proxy_enabled) {
+            $proxy = new Proxy();
+            $params['proxy'] = $proxy->string();
+        }
+
+        $request = new Request('GET', $url, $params);
 
         $promise = $client->sendAsync($request)->then(function ($response) {
             $html = $response->getBody()->getContents();

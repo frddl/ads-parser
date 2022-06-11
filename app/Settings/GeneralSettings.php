@@ -17,6 +17,8 @@ class GeneralSettings extends Settings
     public $email;
     public bool $email_notifications_enabled;
 
+    public bool $proxy_enabled;
+
     public static function group(): string
     {
         return 'general';
