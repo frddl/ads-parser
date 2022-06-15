@@ -1,0 +1,59 @@
+version: '3.7'
+services:
+ 
+  #PHP Service
+  app:
+    build:
+      args:
+        user: miri
+        uid: 1000
+      context: ../src
+      dockerfile: Dockerfile
+    image: ads-parser
+    container_name: ads-parser-app
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www/
+    volumes:
+      - ../src/:/var/www
+    networks:
+      - ads-parser-network
+ 
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: ads-parser-nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8000:80"
+    volumes:
+      - ../src/:/var/www
+      - ../docker/nginx:/etc/nginx/conf.d
+    networks:
+      - ads-parser-network
+ 
+  #DB Service
+  db:
+    image: mysql:8.0
+    container_name: ads-parser-db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ../docker/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - ads-parser-network
+ 
+#Docker Networks
+networks:
+  ads-parser-network:
+    driver: bridge

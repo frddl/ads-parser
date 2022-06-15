@@ -1537,16 +1537,16 @@
         },
         {
             "name": "kkomelin/laravel-translatable-string-exporter",
-            "version": "1.16.1",
+            "version": "1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kkomelin/laravel-translatable-string-exporter.git",
-                "reference": "bc8a8eef5e6a86aec303f1601a743d42c6e997a2"
+                "reference": "0425f2c3add32df852c002b11bffe72c9c67ec89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kkomelin/laravel-translatable-string-exporter/zipball/bc8a8eef5e6a86aec303f1601a743d42c6e997a2",
-                "reference": "bc8a8eef5e6a86aec303f1601a743d42c6e997a2",
+                "url": "https://api.github.com/repos/kkomelin/laravel-translatable-string-exporter/zipball/0425f2c3add32df852c002b11bffe72c9c67ec89",
+                "reference": "0425f2c3add32df852c002b11bffe72c9c67ec89",
                 "shasum": ""
             },
             "require": {
@@ -1596,9 +1596,9 @@
             ],
             "support": {
                 "issues": "https://github.com/kkomelin/laravel-translatable-string-exporter/issues",
-                "source": "https://github.com/kkomelin/laravel-translatable-string-exporter/tree/1.16.1"
+                "source": "https://github.com/kkomelin/laravel-translatable-string-exporter/tree/1.17.0"
             },
-            "time": "2022-04-16T11:49:25+00:00"
+            "time": "2022-06-13T07:13:55+00:00"
         },
         {
             "name": "laravel-notification-channels/telegram",
@@ -10209,5 +10209,5 @@
         "php": "^7.4|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
